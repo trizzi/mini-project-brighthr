@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/navigation/Navbar';
 import WorkerList from './components/workerList/WorkerList';
 import WorkerDetails from './components/workerDetails/WorkerDetails';
 
@@ -11,11 +12,21 @@ function App() {
 				<Routes>
 					<Route
 						path='/'
-						element={<WorkerList />}
+						element={
+							<>
+								<Navbar />
+								<WorkerList />
+							</>
+						}
 					/>
 					<Route
 						path='/worker/:id'
-						element={<WorkerDetails />}
+						element={
+							<>
+								<Navbar />
+								<WorkerDetails />
+							</>
+						}
 					/>
 				</Routes>
 			</Router>

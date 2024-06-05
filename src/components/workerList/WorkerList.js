@@ -86,17 +86,19 @@ const WorkerList = () => {
 	};
 
 	return (
-		<div className='container mx-auto mt-10'>
-			<h1 className='text-2xl font-bold mb-4'>Worker Absence List</h1>
+		<div className='container mx-auto mt-4 p-4 sm:mt-10 sm:p-10'>
+			<h1 className='text-xl font-bold mb-8 sm:text-2xl text-center'>
+				Worker Absence List
+			</h1>
 
-			<div className='mb-6'>
+			<div className='mb-6 flex flex-col sm:flex-row gap-4'>
 				<input
 					type='text'
 					name='name'
 					placeholder='Filter by name'
 					value={filters.name}
 					onChange={handleInputChange}
-					className='mr-4 p-2 border rounded'
+					className='p-2 border rounded flex-1'
 				/>
 				<input
 					type='date'
@@ -104,7 +106,7 @@ const WorkerList = () => {
 					placeholder='Filter by start date'
 					value={filters.startDate}
 					onChange={handleInputChange}
-					className='mr-4 p-2 border rounded'
+					className='p-2 border rounded flex-1'
 				/>
 
 				<input
@@ -113,21 +115,21 @@ const WorkerList = () => {
 					placeholder='Filter by absence type'
 					value={filters.absenceType}
 					onChange={handleInputChange}
-					className='mr-4 p-2 border rounded'
+					className='p-2 border rounded flex-1'
 				/>
 			</div>
 
-			<div className='bg-white shadow-md rounded-lg p-6'>
-				<table className='min-w-full'>
+			<div className='bg-white shadow-md rounded-lg p-4 sm:p-6 overflow-x-auto'>
+				<table className='min-w-full text-sm sm:text-base'>
 					<thead>
-						<tr>
-							<th className='px-4 py-2'>Name</th>
-							<th className='px-4 py-2'>Start Date</th>
-							<th className='px-4 py-2'>End Date</th>
-							<th className='px-4 py-2'>Number of Days</th>
-							<th className='px-4 py-2'>Absence Type</th>
-							<th className='px-4 py-2'>Approved</th>
-							<th className='px-4 py-2'>Conflict</th>
+						<tr className='bg-blue-500 text-white'>
+							<th className='px-2 sm:px-4 py-2 '>Name</th>
+							<th className='px-2 sm:px-4 py-2 '>Start Date</th>
+							<th className='px-2 sm:px-4 py-2 '>End Date</th>
+							<th className='px-2 sm:px-4 py-2 '>Number of Days</th>
+							<th className='px-2 sm:px-4 py-2 '>Absence Type</th>
+							<th className='px-2 sm:px-4 py-2'>Approved</th>
+							<th className='px-2 sm:px-4 py-2 '>Conflict</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -135,27 +137,31 @@ const WorkerList = () => {
 							<tr
 								key={worker.id}
 								className='border-t'>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2 text-center'>
 									<Link
 										to={`/worker/${worker.employee.id}`}
 										className='text-blue-500 hover:underline'>
 										{`${worker.employee.firstName} ${worker.employee.lastName}`}
 									</Link>
 								</td>
-								<td className='px-4 py-2'>{formatDate(worker.startDate)}</td>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2 text-center'>
+									{formatDate(worker.startDate)}
+								</td>
+								<td className='px-2 sm:px-4 py-2 text-center'>
 									{calculateEndDate(worker.startDate, worker.days)}
 								</td>
-								<td className='px-4 py-2'>{worker.days}</td>
-								<td className='px-4 py-2'>{worker.absenceType}</td>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2 text-center'>{worker.days}</td>
+								<td className='px-2 sm:px-4 py-2 text-center'>
+									{worker.absenceType}
+								</td>
+								<td className='px-2 sm:px-4 py-2 text-center'>
 									{worker.approved ? (
 										<span className='text-green-500 font-bold'>Approved</span>
 									) : (
 										<span className='text-red-500 font-bold'>Pending</span>
 									)}
 								</td>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2 text-center'>
 									{worker.hasConflict ? (
 										<span className='text-red-500 font-bold'>Conflict</span>
 									) : (

@@ -54,22 +54,24 @@ const WorkerDetails = () => {
 	};
 
 	return (
-		<div className='container mx-auto mt-10'>
+		<div
+			className='container mx-auto mt-4 p-4 sm:mt-10 sm:p-10'
+			data-testid='worker-details'>
 			<button
 				onClick={() => navigate(-1)}
-				className='bg-blue-500 text-white px-4 py-2 rounded mb-4'>
+				className='bg-pink-500 text-white px-4 py-2 rounded mb-4 '>
 				Back
 			</button>
-			<h1 className='text-2xl font-bold mb-4'>{workerName}'s Absences</h1>
-			<div className='bg-white shadow-md rounded-lg p-6'>
-				<table className='min-w-full'>
+			<h1 className='text-2xl font-bold mb-4 '>{workerName}'s Absences</h1>
+			<div className='bg-white shadow-md rounded-lg p-4 sm:p-6'>
+				<table className='min-w-full text-sm sm:text-base'>
 					<thead>
-						<tr>
-							<th className='px-4 py-2'>Start Date</th>
-							<th className='px-4 py-2'>End Date</th>
-							<th className='px-4 py-2'>Absence Type</th>
-							<th className='px-4 py-2'>Approved</th>
-							<th className='px-4 py-2'>Conflicts</th>
+						<tr className='bg-blue-500 text-white'>
+							<th className='px-2 sm:px-4 py-2 text-left'>Start Date</th>
+							<th className='px-2 sm:px-4 py-2 text-left'>End Date</th>
+							<th className='px-2 sm:px-4 py-2 text-left'>Absence Type</th>
+							<th className='px-2 sm:px-4 py-2 text-left'>Approved</th>
+							<th className='px-2 sm:px-4 py-2 text-left'>Conflicts</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,19 +79,21 @@ const WorkerDetails = () => {
 							<tr
 								key={absence.id}
 								className='border-t'>
-								<td className='px-4 py-2'>{formatDate(absence.startDate)}</td>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2'>
+									{formatDate(absence.startDate)}
+								</td>
+								<td className='px-2 sm:px-4 py-2'>
 									{calculateEndDate(absence.startDate, absence.days)}
 								</td>
-								<td className='px-4 py-2'>{absence.absenceType}</td>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2'>{absence.absenceType}</td>
+								<td className='px-2 sm:px-4 py-2'>
 									{absence.approved ? (
 										<span className='text-green-500'>Approved</span>
 									) : (
 										<span className='text-red-500'>Pending</span>
 									)}
 								</td>
-								<td className='px-4 py-2'>
+								<td className='px-2 sm:px-4 py-2'>
 									{absence.conflicts.length > 0 ? (
 										<div className='text-red-500'>
 											{absence.conflicts.map((conflict) => (
